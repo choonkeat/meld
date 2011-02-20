@@ -1,0 +1,43 @@
+<!-- PAGE.HTML -->
+<ul class="contacts">
+  <li class="contact">
+    <h1 class="name">Person's name</h1>
+      <ul>
+        <li class='title'>A job this person does</li>
+      </ul>
+  </li>
+  <li class="contact">
+    <h1 class="name">Another person</h1>
+      <ul>
+        <li class='title'>another job</li>
+      </ul>
+  </li>
+</ul>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
+<script src="meld.js"></script>
+<script>
+  var data = [{ name: "hij1nx",   title : "code slayer" },
+              { name: "tmpvar",   title : "code pimp" },
+              { name: "choonkeat", title: "coder"}];
+</script>
+<script>
+  if (true) {
+    // Use the built-in renderer
+    meld('.contacts .contact', data);
+
+  } else {
+    // or Custom renderer function
+    meld('.contacts .contact', data, function(index, ele, row) {
+
+        // update "innerHTML"s...
+        ele.find('.name').text(row.name);
+        ele.find('.title').text(row.title);
+
+        // or work with attributes
+        ele.find('.name')[0].title = "His name is " + row.name
+        ele.addClass('zebra-' + (index % 2));
+
+    });
+  }
+</script>
+<style>.zebra-0 { background: #ccc; }</style>
